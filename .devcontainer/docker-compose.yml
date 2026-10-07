@@ -1,0 +1,16 @@
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/typescript-node:1-20-bookworm
+    command: sleep infinity
+    volumes: ["..:/workspace:cached"]
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/capitals
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: capitals
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
